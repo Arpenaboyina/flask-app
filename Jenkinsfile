@@ -4,7 +4,7 @@ pipeline {
   environment {
     DOCKERHUB_REPO = "arpenaboyina/flask-mysql-demo" // ✅ your Docker Hub repo
     IMAGE_TAG = "${env.BUILD_NUMBER}"
-    DOCKERHUB_CREDENTIALS = 'dockerhub-creds' // ✅ Jenkins credentials ID
+    DOCKERHUB_CREDENTIALS = 'Rakesh' // ✅ Jenkins credentials ID
   }
 
   stages {
@@ -81,4 +81,5 @@ pipeline {
     }
   }
 }
+
 
