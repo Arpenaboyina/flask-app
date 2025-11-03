@@ -4,7 +4,7 @@ pipeline {
   environment {
     IMAGE = "arpenaboyina/flask-app-demo"
     TAG = "${env.BUILD_NUMBER}"
-    DOCKER_CREDENTIALS = "dockerhub"
+    DOCKER_CREDENTIALS = "Rakesh"
   }
 
   stages {
@@ -57,3 +57,4 @@ pipeline {
     }
   }
 }
+
