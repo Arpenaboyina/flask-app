@@ -5,13 +5,14 @@ import mysql.connector
 
 app = Flask(__name__)
 
+DB_ENABLED = os.environ.get("DB_ENABLED", "true").lower() == "true"
+
 DB_HOST = os.environ.get("MYSQL_HOST", "db")
 DB_USER = os.environ.get("MYSQL_USER", "user")
 DB_PASS = os.environ.get("MYSQL_PASSWORD", "Rakesh04@")
 DB_NAME = os.environ.get("MYSQL_DATABASE", "testdb")
 
 def get_db_connection():
-    # retry loop until MySQL is ready
     for _ in range(10):
         try:
             conn = mysql.connector.connect(
@@ -28,6 +29,9 @@ def get_db_connection():
 
 @app.route("/")
 def index():
+    if not DB_ENABLED:
+        return jsonify({"message": "Hello from Flask (DB disabled for test)"}), 200
+
     try:
         conn = get_db_connection()
         cursor = conn.cursor()
@@ -38,7 +42,7 @@ def index():
         count = cursor.fetchone()[0]
         cursor.close()
         conn.close()
-        return jsonify({"message":"Hello from Flask","hits": count})
+        return jsonify({"message": "Hello from Flask", "hits": count})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
