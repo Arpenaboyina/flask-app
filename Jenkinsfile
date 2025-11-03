@@ -33,7 +33,8 @@ pipeline {
 
           // Run the container
           def img = docker.image("${DOCKERHUB_REPO}:${IMAGE_TAG}")
-          img.run("-d --name temp_test -p 5000:5000")
+          img.run("-d --name temp_test -e DB_ENABLED=false -p 5000:5000")
+
 
           // Wait a few seconds for container to start
           bat "ping -n 6 127.0.0.1 >nul"
@@ -80,3 +81,4 @@ pipeline {
     }
   }
 }
+
