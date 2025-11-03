@@ -10,10 +10,8 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        // ✅ Works only if Pipeline type is "Pipeline script from SCM"
-        checkout scm
-        // (If you are pasting manually instead, use:
-        // git branch: 'main', url: 'https://github.com/Arpenaboyina/flask-app.git')
+      git branch: 'main',
+        url: 'https://github.com/Arpenaboyina/flask-app.git'
       }
     }
 
@@ -78,3 +76,4 @@ pipeline {
     }
   }
 }
+
